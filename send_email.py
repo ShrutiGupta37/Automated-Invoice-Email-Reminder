@@ -3,9 +3,9 @@ import smtplib
 from email.message import EmailMessage
 import ssl
 
-email_sender ='finalyearprojectemail419@gmail.com'
-email_password='uiic ukco mpfi zrdx'
-email_receiver ='itzclout.exe@gmail.com'
+email_sender =' ' #add sender's email add
+email_password=' ' #add 16 digit password
+email_receiver =' ' #add receiver's email add
 
 subject= "Testing for Automatic email"
 body = """
