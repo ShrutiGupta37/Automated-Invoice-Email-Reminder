@@ -10,6 +10,9 @@ email_sender =' '           #add sender's email
 email_password=' '           #add 16 digit password
 df = pd.read_csv('C:\Git Demo\Email-Automation\data.csv')
 
+email_sender =' ' #add sender's email add
+email_password=' ' #add 16 digit password
+email_receiver =' ' #add receiver's email add
 
 subject= "Testing for Automatic email"
 attach_file= True
