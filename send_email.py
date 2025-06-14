@@ -7,8 +7,8 @@ import ssl
 import time
 import pandas as pd
 
-sender_email ='finalyearprojectemail419@gmail.com' #add sender's email
-email_password='uiic ukco mpfi zrdx'       #add 16 digit password
+sender_email =' ' #add sender's email
+email_password=' '       #add 16 digit password
 df = pd.read_csv('C:\Git Demo\Email-Automation\data.csv')
 df['Email'] = df['Email'].astype(str).str.strip()   
 
