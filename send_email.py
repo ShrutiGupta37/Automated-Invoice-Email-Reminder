@@ -2,76 +2,60 @@ import os
 import smtplib
 from email.message import EmailMessage
 from email.utils import formataddr
-import mimetypes
-import ssl
-import time
-import pandas as pd
+from pathlib import Path
 
-sender_email =' ' #add sender's email
-email_password=' '       #add 16 digit password
-df = pd.read_csv('C:\Git Demo\Email-Automation\data.csv')
-df['Email'] = df['Email'].astype(str).str.strip()   
+from dotenv import load_dotenv  # pip install python-dotenv
 
-subject= "Testing for Automatic email"
-attach_file= True
+PORT = 587  
+EMAIL_SERVER = "smtp.gmail.com"
 
-if attach_file:
-    file_paths = [r'C:\Git Demo\Email-Automation\data.csv',r'C:\Git Demo\Git-Practice\git-cheat-sheet-education.pdf']  #add file paths which you want to send
-    file_name = "data.csv"
+# Load the environment variables
+current_dir = Path(__file__).resolve().parent if "__file__" in locals() else Path.cwd()
+envars = current_dir / ".env"
+load_dotenv(envars)
+
+# Read environment variables
+sender_email = os.getenv("EMAIL")
+password_email = os.getenv("PASSWORD")
 
 
-def send_email(subject, receiver_email, name, phone_no):
+def send_email(subject, receiver_email, name, due_date, invoice_no, amount):
+    # Create the base text message.
     msg = EmailMessage()
     msg["Subject"] = subject
-    msg["From"] = sender_email
+    msg["From"] = formataddr(("SHRUTI GUPTA", f"{sender_email}"))
     msg["To"] = receiver_email
     msg["BCC"] = sender_email
 
+  
     msg.add_alternative(
         f"""\
-        <html>
-          <body>
-            <p>Hi {name},</p>
-            <p>I hope you are well.</p>
-            <p>This is just a quick note to confirm that your registered phone number is: <strong>{phone_no}</strong>.</p>
-            <p>If this is incorrect, please update us soon.</p>
-            <p>Best regards,<br><strong>Shruti Gupta</strong></p>
-          </body>
-        </html>
-        """,
+    <html>
+      <body>
+        <p>Hi {name},</p>
+        <p>I hope you are well.</p>
+        <p>I just wanted to drop you a quick note to remind you that <strong>{amount} INR</strong> in respect of our invoice {invoice_no} is due for payment on <strong>{due_date}</strong>.</p>
+        <p>I would be really grateful if you could confirm that everything is on track for payment.</p>
+        <p>Best regards</p>
+        <p>SHRUTI GUPTA</p>
+      </body>
+    </html>
+    """,
         subtype="html",
     )
 
-
-    if attach_file:
-        for file_path in file_paths:
-            if os.path.isfile(file_path):
-                with open(file_path, "rb") as f:
-                    file_data = f.read()
-                    mime_type, _ = mimetypes.guess_type(file_path)
-                    maintype, subtype = mime_type.split("/") if mime_type else ("application", "octet-stream")
-                    msg.add_attachment(file_data, maintype=maintype, subtype=subtype, filename=os.path.basename(file_path))
-
-
-    context = ssl.create_default_context()
-    with smtplib.SMTP("smtp.gmail.com", 587) as server:
-        server.starttls(context=context)
-        server.login(sender_email, email_password)
-        server.send_message(msg)
+    with smtplib.SMTP(EMAIL_SERVER, PORT) as server:
+        server.starttls()
+        server.login(sender_email, password_email)
+        server.sendmail(sender_email, receiver_email, msg.as_string())
 
 
 if __name__ == "__main__":
-    for index, row in df.iterrows():
-        try:
-            send_email(
-                subject=subject,
-                name=row["Name"],
-                receiver_email=row["Email"],
-                phone_no=row["Phone no."]
-            )
-            print(f"Sent to {row['Email']}")
-            time.sleep(2)
-        except Exception as e:
-            print(f"Failed for {row['Email']}: {e}")
-
-    print("\nAll emails are sent!")
+    send_email(
+        subject="Invoice Reminder",
+        name="John Doe",
+        receiver_email="shr.197575@gmail.com",
+        due_date="11, Aug 2022",
+        invoice_no="INV-21-12-009",
+        amount="5",
+    )
