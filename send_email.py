@@ -20,7 +20,6 @@ password_email = os.getenv("PASSWORD")
 
 
 def send_email(subject, receiver_email, Name,Due_Date, Invoice_no,Amount):
-    # Create the base text message.
     msg = EmailMessage()
     msg["Subject"] = subject
     msg["From"] = formataddr(("SHRUTI GUPTA", f"{sender_email}"))
