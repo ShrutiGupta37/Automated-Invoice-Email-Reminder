@@ -1,8 +1,14 @@
+import os
 from datetime import date 
 import pandas as pd  
 from send_email import send_email  
 from dotenv import load_dotenv
+from pathlib import Path
 
+current_dir = Path(__file__).resolve().parent if "__file__" in locals() else Path.cwd()
+envars = current_dir / ".env"
+load_dotenv(envars)
+URL = os.getenv("URL")
 
 def load_df(url):
     parse_dates = ["Due_Date", "Reminder_date"]
