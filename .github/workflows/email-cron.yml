@@ -26,6 +26,6 @@ jobs:
         env:
           EMAIL: ${{ secrets.EMAIL }}
           PASSWORD: ${{ secrets.PASSWORD }}
-          SHEET_URL: ${{ secrets.URL }}
+          SHEET_URL: ${{ secrets.SHEET_URL }}
         run: |
           python main.py

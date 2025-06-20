@@ -10,7 +10,7 @@ envars = current_dir / ".env"
 load_dotenv(envars)
 
 
-URL = os.getenv("URL") 
+URL = os.getenv("SHEET_URL") 
 
 def load_df(url):
     parse_dates = ["Due_Date", "Reminder_date"]
