@@ -1,8 +1,7 @@
 from datetime import date 
 import pandas as pd  
 from send_email import send_email  
-
-URL = "https://docs.google.com/spreadsheets/d/1iaFJzx6orKnKWEe2UlQR3Y3Z0GEzsZ8SdriaYt2PKUI/export?format=csv"
+from dotenv import load_dotenv
 
 
 def load_df(url):
