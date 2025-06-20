@@ -19,7 +19,7 @@ sender_email = os.getenv("EMAIL")
 password_email = os.getenv("PASSWORD")
 
 
-def send_email(subject, receiver_email, name, due_date, invoice_no, amount):
+def send_email(subject, receiver_email, Name,Due_Date, Invoice_no,Amount):
     # Create the base text message.
     msg = EmailMessage()
     msg["Subject"] = subject
@@ -32,9 +32,9 @@ def send_email(subject, receiver_email, name, due_date, invoice_no, amount):
         f"""\
     <html>
       <body>
-        <p>Hi {name},</p>
+        <p>Hi {Name},</p>
         <p>I hope you are well.</p>
-        <p>I just wanted to drop you a quick note to remind you that <strong>{amount} INR</strong> in respect of our invoice {invoice_no} is due for payment on <strong>{due_date}</strong>.</p>
+        <p>I just wanted to drop you a quick note to remind you that <strong>{Amount} INR</strong> in respect of our invoice {Invoice_no} is due for payment on <strong>{Due_Date}</strong>.</p>
         <p>I would be really grateful if you could confirm that everything is on track for payment.</p>
         <p>Best regards</p>
         <p>SHRUTI GUPTA</p>
@@ -50,12 +50,3 @@ def send_email(subject, receiver_email, name, due_date, invoice_no, amount):
         server.sendmail(sender_email, receiver_email, msg.as_string())
 
 
-if __name__ == "__main__":
-    send_email(
-        subject="Invoice Reminder",
-        name="John Doe",
-        receiver_email="shr.197575@gmail.com",
-        due_date="11, Aug 2022",
-        invoice_no="INV-21-12-009",
-        amount="5",
-    )
