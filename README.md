@@ -47,11 +47,7 @@ On GitHub: <br>
 
 Add the following secrets:
 
-`EMAIL`
-
-`PASSWORD`
-
-`URL`(the CSV export link of your Google Sheet)
+`EMAIL`,`PASSWORD`,`URL`(the CSV export link of your Google Sheet)
 
 ### 6. Enable GitHub Actions
 Ensure this file exists in your repo:
