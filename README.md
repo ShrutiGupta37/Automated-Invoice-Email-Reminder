@@ -73,7 +73,16 @@ git push
 ```
 You can also manually trigger the workflow from the Actions tab on GitHub.
 
+## 🛠️To-Do or Future Improvements
+- Add logging to track which emails were sent
+- Add support for attachments (like PDF invoices)
+- Admin dashboard to upload new invoices
+- Error handling with notification system
 
+## 🤝 Contributing
+
+Contributions are welcome!  
+Feel free to fork the repository, submit a pull request, or open an issue for suggestions.
 
 
 
