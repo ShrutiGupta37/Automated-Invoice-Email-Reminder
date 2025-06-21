@@ -10,12 +10,24 @@ This project automatically sends email reminders to clients about upcoming or ov
 - Sensitive data managed using environment variables
 - Built with **Python** and **pandas**
 
-## 🔄 How It Works (Flow)
 
+<table>
+  <tr>
+    <td>
+
+## 🔄 How It Works (Flow)<br><br>
 1. GitHub Action triggers daily at 6 AM UTC.
 2. Reads Google Sheet from public CSV export link.
 3. Parses dates and filters unpaid reminders due today.
 4. Sends personalized emails via Gmail SMTP.
+
+    </td>
+    <td>
+      <img src="https://github.com/user-attachments/assets/e1fc549c-cac3-4bc5-99d8-d95f1c09dabd" width="400" height="400" />
+    </td>
+  </tr>
+</table>
+
 
 
 ## 🛠️ Setup Instructions
